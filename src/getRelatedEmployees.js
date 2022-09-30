@@ -6,8 +6,7 @@ function isManager(id) {
 
 function createArray(managerId) {
   return data.employees.reduce((arrayMenagedPeople, person) => {
-    const checkSubordinates = person.managers.some((id) => managerId === id);
-    if (checkSubordinates) {
+    if (person.managers.includes(managerId)) {
       arrayMenagedPeople.push(`${person.firstName} ${person.lastName}`);
     }
     return arrayMenagedPeople;
