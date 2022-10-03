@@ -1,12 +1,12 @@
 const data = require('../data/zoo_data');
 
-const { hours } = data;
+const { hours, species } = data;
 const weekDays = Object.keys(hours);
 
-const checkAnimal = (parameter) => data.species.find((animal) => animal.name === parameter);
+const checkAnimal = (parameter) => species.find((animal) => animal.name === parameter);
 
 const arrayConstructorAnimals = (weekDay) => {
-  const animals = data.species.reduce((animaisArray, eachAnimal) => {
+  const animals = species.reduce((animaisArray, eachAnimal) => {
     if (eachAnimal.availability.includes(weekDay)) {
       animaisArray.push(eachAnimal.name);
     }
