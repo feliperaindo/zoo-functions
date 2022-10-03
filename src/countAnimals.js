@@ -9,14 +9,16 @@
 
 const data = require('../data/zoo_data');
 
+const { species } = data;
+
 function undefinedParam() {
   const animalsObj = {};
-  data.species.forEach((eachObj) => { animalsObj[eachObj.name] = eachObj.residents.length; });
+  species.forEach((eachObj) => { animalsObj[eachObj.name] = eachObj.residents.length; });
   return animalsObj;
 }
 
 function undefinedSex(specie) {
-  const getSpecieObj = data.species.find((animalObj) => animalObj.name === specie);
+  const getSpecieObj = species.find((animalObj) => animalObj.name === specie);
   return JSON.stringify(getSpecieObj);
 }
 

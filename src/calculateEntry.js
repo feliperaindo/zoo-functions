@@ -1,8 +1,5 @@
 const data = require('../data/zoo_data');
 
-// Ambas as funções recebem arrays de objetos
-/* child = < 18; adult = > 18 && < 50; senior = > 50; */
-
 function countEntrants(entrants) {
   const visitors = { adult: 0, child: 0, senior: 0 };
   entrants.forEach((visitor) => {
