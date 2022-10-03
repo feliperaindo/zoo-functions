@@ -1,9 +1,11 @@
 const data = require('../data/zoo_data');
 
-function getOldestFromFirstSpecies(id) {
-  const colaborator = data.employees.find((person) => person.id === id);
+const { employees, species } = data;
 
-  const responsableAnimal = data.species.find((animal) =>
+function getOldestFromFirstSpecies(id) {
+  const colaborator = employees.find((person) => person.id === id);
+
+  const responsableAnimal = species.find((animal) =>
     colaborator.responsibleFor.includes(animal.id));
 
   const getOlderAnimal = responsableAnimal.residents.reduce((animalOne, animalTwo) => {
