@@ -14,12 +14,12 @@ function undefinedParam() {
 
 function undefinedSex(specie) {
   const getSpecieObj = species.find((animalObj) => animalObj.name === specie);
-  return JSON.stringify(getSpecieObj);
+  return getSpecieObj.residents;
 }
 
 function specieAndSexDefined(specie, sex) {
-  const getFilteredSpecie = JSON.parse(undefinedSex(specie));
-  const getFilteredSex = getFilteredSpecie.residents.filter((condition) => condition.sex === sex);
+  const getFilteredSpecie = undefinedSex(specie);
+  const getFilteredSex = getFilteredSpecie.filter((condition) => condition.sex === sex);
   return getFilteredSex.length;
 }
 
@@ -31,8 +31,8 @@ function countAnimals(animal) {
   const { specie, sex } = animal;
 
   if (!sex) {
-    const objReturned = JSON.parse(undefinedSex(specie));
-    return objReturned.residents.length;
+    const objReturned = undefinedSex(specie);
+    return objReturned.length;
   }
   return specieAndSexDefined(specie, sex);
 }
