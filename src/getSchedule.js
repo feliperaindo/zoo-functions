@@ -52,4 +52,7 @@ function getSchedule(scheduleTarget) {
   return filterDayOrAnimal(scheduleTarget, animal, day);
 }
 
+// const actual = getSchedule();
+// console.log(actual);
+
 module.exports = getSchedule;
