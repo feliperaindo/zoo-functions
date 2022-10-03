@@ -1,20 +1,15 @@
-// const ageFiltered = filterSexAndAge(specieFiltered, 'age', age);
-// const sexFiltered = filterSexAndAge(ageFiltered, 'sex', sex);
-
-// return animal.reduce((animalsObj, eachObj) => {
-//   animalsObj[eachObj.name] = eachObj.residents.length;
-//   return animalsObj;
-// }, {});
-// countAnimals({ specie: 'bears' });
-
 const data = require('../data/zoo_data');
 
 const { species } = data;
 
 function undefinedParam() {
-  const animalsObj = {};
-  species.forEach((eachObj) => { animalsObj[eachObj.name] = eachObj.residents.length; });
-  return animalsObj;
+  return species.reduce((animalsObj, eachObj) => {
+    const { name, residents } = eachObj;
+    return {
+      ...animalsObj,
+      [name]: residents.length,
+    };
+  }, {});
 }
 
 function undefinedSex(specie) {
