@@ -39,14 +39,14 @@ function filterDayOrAnimal(string, animalResult, dayResult) {
 }
 
 function getSchedule(scheduleTarget) {
-  if (scheduleTarget === undefined) {
+  if (!scheduleTarget) {
     return tableSchedule(weekDays);
   }
 
   const animal = checkAnimal(scheduleTarget);
   const day = weekDays.includes(scheduleTarget);
 
-  if (animal === undefined && day === false) {
+  if (!animal && !day) {
     return tableSchedule(weekDays);
   }
   return filterDayOrAnimal(scheduleTarget, animal, day);

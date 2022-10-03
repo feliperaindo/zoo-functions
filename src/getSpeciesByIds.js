@@ -3,7 +3,7 @@ const data = require('../data/zoo_data');
 function getSpeciesByIds(...ids) {
   const getAnimals = ids.reduce((arrayAnimals, id) => {
     const checkId = data.species.find((animal) => animal.id === id);
-    if (checkId !== undefined) {
+    if (checkId) {
       arrayAnimals.push(checkId);
     }
     return arrayAnimals;

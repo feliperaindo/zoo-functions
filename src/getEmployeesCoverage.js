@@ -24,14 +24,14 @@ const employerInfo = ({ id, firstName, lastName, responsibleFor }) => ({
 const tableEmployees = () => employees.map((eachColaborator) => (employerInfo(eachColaborator)));
 
 function getEmployeesCoverage(employer) {
-  if (employer === undefined) {
+  if (!employer) {
     return tableEmployees();
   }
 
   const { name, id } = employer;
   const getEmployer = validateIdAndName(id, name);
 
-  if (getEmployer === undefined) {
+  if (!getEmployer) {
     throw new Error('Informações inválidas');
   }
   return employerInfo(getEmployer);

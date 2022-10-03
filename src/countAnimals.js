@@ -24,13 +24,13 @@ function specieAndSexDefined(specie, sex) {
 }
 
 function countAnimals(animal) {
-  if (animal === undefined) {
+  if (!animal) {
     return undefinedParam();
   }
 
   const { specie, sex } = animal;
 
-  if (sex === undefined) {
+  if (!sex) {
     const objReturned = JSON.parse(undefinedSex(specie));
     return objReturned.residents.length;
   }
