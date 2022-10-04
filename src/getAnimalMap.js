@@ -6,6 +6,8 @@ const arrayCreator = (filter) => filter.reduce((array, animal) => [...array, ani
 
 const filterLocation = (location) => species.filter((animal) => animal.location === location);
 
+const sortObject = (object) => object.sort((animalObjOne, animalObjTwo)) => {}; 
+
 const insertAnimalsInArray = (object, array) => {
   array.forEach((eachAnimalObject) => {
     const { residents, location, name } = eachAnimalObject;
@@ -38,7 +40,7 @@ function getAnimalMap(options) {
   if (!options) {
     return includeNamesUndefined();
   }
-  const { includeNames } = options;
+  const { includeNames, sorted, sex } = options;
 
   if (!includeNames) {
     return includeNamesUndefined();
