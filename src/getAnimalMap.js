@@ -2,34 +2,43 @@ const data = require('../data/zoo_data');
 
 const { species } = data;
 
-const arrayCreator = (filter) => filter.reduce((array, animal) => [...array, animal.name], []);
+const sortObject = (array) => array.sort();
 
-const filterLocation = (location) => species.filter((animal) => animal.location === location);
+const filterTool = (arrayToFilter, filter, key) =>
+  arrayToFilter.filter((animal) => animal[key] === filter);
 
-const sortObject = (object) => object.sort((animalObjOne, animalObjTwo)) => {}; 
+const arrayCreator = (filter, booleanSorted = false, sex = null) => {
+  let maleFemaleFiltered = filter;
 
-const insertAnimalsInArray = (object, array) => {
-  array.forEach((eachAnimalObject) => {
+  if (sex) {
+    maleFemaleFiltered = filterTool(filter, sex, 'sex');
+  }
+
+  const arrayAnimalNames = maleFemaleFiltered.reduce((array, animal) =>
+    [...array, animal.name], []);
+  if (booleanSorted) {
+    return sortObject(arrayAnimalNames);
+  }
+  return arrayAnimalNames;
+};
+
+const insertAnimalsInArray = (object, array, booleanSorted, sex) =>
+  array.reduce((returnedNewObj, eachAnimalObject) => {
     const { residents, location, name } = eachAnimalObject;
-    const newObj = { [name]: arrayCreator(residents) };
-    object[location].push(newObj);
-  });
-  return object;
-};
+    const newObj = { [name]: arrayCreator(residents, booleanSorted, sex) };
+    returnedNewObj[location].push(newObj);
+    return returnedNewObj;
+  }, object);
 
-const includeNamesDefined = () => {
+const returnConstructor = (booleanIncludeNames = false, booleanSorted, sex) => {
   const dataNames = { NE: [], NW: [], SE: [], SW: [] };
-  Object.keys(dataNames).forEach((location) => {
-    const animalsInLocation = filterLocation(location);
-    insertAnimalsInArray(dataNames, animalsInLocation);
-  });
-  return dataNames;
-};
 
-const includeNamesUndefined = () => {
-  const dataNames = { NE: [], NW: [], SE: [], SW: [] };
   Object.keys(dataNames).forEach((location) => {
-    const animalsInLocation = filterLocation(location);
+    const animalsInLocation = filterTool(species, location, 'location');
+    if (booleanIncludeNames) {
+      insertAnimalsInArray(dataNames, animalsInLocation, booleanSorted, sex);
+      return dataNames;
+    }
     const arrayAnimalsZoo = arrayCreator(animalsInLocation);
     dataNames[location] = [...arrayAnimalsZoo];
   });
@@ -38,14 +47,11 @@ const includeNamesUndefined = () => {
 
 function getAnimalMap(options) {
   if (!options) {
-    return includeNamesUndefined();
+    return returnConstructor();
   }
   const { includeNames, sorted, sex } = options;
 
-  if (!includeNames) {
-    return includeNamesUndefined();
-  }
-  return includeNamesDefined();
+  return returnConstructor(includeNames, sorted, sex);
 }
 
 module.exports = getAnimalMap;
