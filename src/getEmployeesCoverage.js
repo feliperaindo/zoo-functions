@@ -3,9 +3,9 @@ const data = require('../data/zoo_data');
 const { species, employees } = data;
 
 const validateIdAndName = (idNumber, name) =>
-  employees.find((eachColaborator) => eachColaborator.firstName === name
-   || eachColaborator.lastName === name
-   || eachColaborator.id === idNumber);
+  employees.find(({ firstName, lastName, id }) => firstName === name
+   || lastName === name
+   || id === idNumber);
 
 const animalsInfo = (animals, info) => species.reduce((filteredInfo, animal) => {
   if (animals.includes(animal.id)) {
