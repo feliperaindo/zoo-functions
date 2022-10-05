@@ -12,7 +12,7 @@ function getOldestFromFirstSpecies(id) {
     const test = (animalOne.age > animalTwo.age) ? animalOne : animalTwo;
     return test;
   });
-  return [getOlderAnimal.name, getOlderAnimal.sex, getOlderAnimal.age];
+  return Object.values(getOlderAnimal);
 }
 
 module.exports = getOldestFromFirstSpecies;
