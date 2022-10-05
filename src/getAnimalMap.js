@@ -16,6 +16,7 @@ const arrayCreator = (filter, booleanSorted = false, sex = null) => {
 
   const arrayAnimalNames = maleFemaleFiltered.reduce((array, animal) =>
     [...array, animal.name], []);
+
   if (booleanSorted) {
     return sortObject(arrayAnimalNames);
   }
@@ -25,8 +26,11 @@ const arrayCreator = (filter, booleanSorted = false, sex = null) => {
 const insertAnimalsInArray = (object, array, booleanSorted, sex) =>
   array.reduce((returnedNewObj, eachAnimalObject) => {
     const { residents, location, name } = eachAnimalObject;
+
     const newObj = { [name]: arrayCreator(residents, booleanSorted, sex) };
+
     returnedNewObj[location].push(newObj);
+
     return returnedNewObj;
   }, object);
 
@@ -35,13 +39,16 @@ const returnConstructor = (booleanIncludeNames = false, booleanSorted, sex) => {
 
   Object.keys(dataNames).forEach((location) => {
     const animalsInLocation = filterTool(species, location, 'location');
+
     if (booleanIncludeNames) {
       insertAnimalsInArray(dataNames, animalsInLocation, booleanSorted, sex);
       return dataNames;
     }
+
     const arrayAnimalsZoo = arrayCreator(animalsInLocation);
     dataNames[location] = [...arrayAnimalsZoo];
   });
+
   return dataNames;
 };
 
