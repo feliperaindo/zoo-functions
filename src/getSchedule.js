@@ -5,15 +5,12 @@ const weekDays = Object.keys(hours);
 
 const checkAnimal = (parameter) => species.find((animal) => animal.name === parameter);
 
-const arrayConstructorAnimals = (weekDay) => {
-  const animals = species.reduce((animaisArray, eachAnimal) => {
-    if (eachAnimal.availability.includes(weekDay)) {
-      animaisArray.push(eachAnimal.name);
-    }
-    return animaisArray;
-  }, []);
-  return animals;
-};
+const arrayConstructorAnimals = (weekDay) => species.reduce((animaisArray, eachAnimal) => {
+  if (eachAnimal.availability.includes(weekDay)) {
+    animaisArray.push(eachAnimal.name);
+  }
+  return animaisArray;
+}, []);
 
 function tableSchedule(filterDays) {
   const table = {};
