@@ -19,8 +19,7 @@ function undefinedSex(specie) {
 
 function specieAndSexDefined(specie, sex) {
   const getFilteredSpecie = undefinedSex(specie);
-  const getFilteredSex = getFilteredSpecie.filter((condition) => condition.sex === sex);
-  return getFilteredSex.length;
+  return getFilteredSpecie.filter((condition) => condition.sex === sex).length;
 }
 
 function countAnimals(animal) {
@@ -31,8 +30,7 @@ function countAnimals(animal) {
   const { specie, sex } = animal;
 
   if (!sex) {
-    const objReturned = undefinedSex(specie);
-    return objReturned.length;
+    return undefinedSex(specie).length;
   }
   return specieAndSexDefined(specie, sex);
 }
