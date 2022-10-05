@@ -1,8 +1,7 @@
 const data = require('../data/zoo_data');
 
-function isManager(id) {
-  return data.employees.some((person) => person.managers.some((idNumber) => idNumber === id));
-}
+const isManager = (id) => data.employees.some((person) =>
+  person.managers.some((idNumber) => idNumber === id));
 
 function createArray(managerId) {
   return data.employees.reduce((arrayMenagedPeople, person) => {
@@ -14,8 +13,7 @@ function createArray(managerId) {
 }
 
 function getRelatedEmployees(managerId) {
-  const checkMenager = isManager(managerId);
-  if (checkMenager) {
+  if (isManager(managerId)) {
     return createArray(managerId);
   }
   throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
