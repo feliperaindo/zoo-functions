@@ -43,7 +43,7 @@ describe('Testes da função getOpeningHours', () => {
 });
 
 describe('Error text messages when wrong parameter is apply', () => {
-  test('Verify error message when a hour and minutes are bigger than twenty is apply', () => {
+  test('Verify error message when a hour and minutes are bigger than twenty and sixty are apply', () => {
     expect(() => getOpeningHours('Tuesday', '15:00-PM')).toThrow('The hour must be between 0 and 12');
     expect(() => getOpeningHours('Saturday', '05:78-AM')).toThrow('The minutes must be between 0 and 59');
   });
