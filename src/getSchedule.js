@@ -29,10 +29,8 @@ function tableSchedule(filterDays) {
 }
 
 function filterDayOrAnimal(string, animalResult, dayResult) {
-  if (dayResult) {
-    return tableSchedule([string]);
-  }
-  return animalResult.availability;
+  const test = dayResult ? tableSchedule([string]) : animalResult.availability;
+  return test;
 }
 
 function getSchedule(scheduleTarget) {
