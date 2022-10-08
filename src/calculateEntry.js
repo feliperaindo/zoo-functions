@@ -22,11 +22,11 @@ function calculateEntry(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const quantityVisitors = countEntrants(entrants);
+  const quantityVisitor = countEntrants(entrants);
   const { adult, senior, child } = data.prices;
-  const priceAccumulated = (adult * quantityVisitors.adult)
-  + (child * quantityVisitors.child)
-  + (senior * quantityVisitors.senior);
+  const priceAccumulated = (adult * quantityVisitor.adult)
+  + (child * quantityVisitor.child)
+  + (senior * quantityVisitor.senior);
   return priceAccumulated;
 }
 
