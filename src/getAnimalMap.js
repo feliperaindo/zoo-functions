@@ -23,7 +23,7 @@ const arrayCreator = (filter, booleanSorted = false, sex = null) => {
   return arrayAnimalNames;
 };
 
-const insertAnimalsInArray = (object, array, booleanSorted, sex) =>
+const insertAnimalsInArray = (object, array, booleanSorted, sex) => {
   array.reduce((returnedNewObj, eachAnimalObject) => {
     const { residents, location, name } = eachAnimalObject;
 
@@ -33,6 +33,7 @@ const insertAnimalsInArray = (object, array, booleanSorted, sex) =>
 
     return returnedNewObj;
   }, object);
+};
 
 const returnConstructor = (booleanIncludeNames = false, booleanSorted, sex) => {
   const dataNames = { NE: [], NW: [], SE: [], SW: [] };
