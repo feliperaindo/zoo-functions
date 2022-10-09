@@ -46,7 +46,7 @@ const returnConstructor = (booleanIncludeNames = false, booleanSorted, sex) => {
       return dataNames;
     }
 
-    dataNames[location] = [...arrayCreator(animalsInLocation)];
+    dataNames[location] = arrayCreator(animalsInLocation);
   });
 
   return dataNames;
