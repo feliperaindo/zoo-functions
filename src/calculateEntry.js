@@ -23,10 +23,7 @@ function calculateEntry(entrants) {
     return 0;
   }
   const { adult: visitAdult, child: visitChild, senior: visitSenior } = countEntrants(entrants);
-  const priceAccumulated = (adult * visitAdult)
-    + (child * visitChild)
-    + (senior * visitSenior);
-  return priceAccumulated;
+  return (adult * visitAdult) + (child * visitChild) + (senior * visitSenior);
 }
 
 module.exports = { calculateEntry, countEntrants };

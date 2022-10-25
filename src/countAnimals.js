@@ -18,10 +18,7 @@ function countAnimals(animal) {
 
   const { specie, sex } = animal;
 
-  if (!sex) {
-    return undefinedSex(specie).length;
-  }
-  return specieAndSexDefined(specie, sex);
+  return (!sex) ? undefinedSex(specie).length : specieAndSexDefined(specie, sex);
 }
 
 module.exports = countAnimals;
