@@ -1,6 +1,5 @@
-const data = require('../data/zoo_data');
+const { hours, species } = require('../data/zoo_data');
 
-const { hours, species } = data;
 const weekDays = Object.keys(hours);
 
 const checkAnimal = (parameter) => species.find((animal) => animal.name === parameter);

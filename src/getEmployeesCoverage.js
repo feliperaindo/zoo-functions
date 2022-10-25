@@ -1,6 +1,4 @@
-const data = require('../data/zoo_data');
-
-const { species, employees } = data;
+const { species, employees } = require('../data/zoo_data');
 
 const validateIdAndName = (idNumber, name) =>
   employees.find(({ firstName, lastName, id }) => firstName === name

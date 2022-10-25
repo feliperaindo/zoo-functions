@@ -1,4 +1,4 @@
-const data = require('../data/zoo_data');
+const { prices: { adult, senior, child } } = require('../data/zoo_data');
 
 function countEntrants(entrants) {
   const visitors = { adult: 0, child: 0, senior: 0 };
@@ -22,11 +22,10 @@ function calculateEntry(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const quantityVisitor = countEntrants(entrants);
-  const { adult, senior, child } = data.prices;
-  const priceAccumulated = (adult * quantityVisitor.adult)
-  + (child * quantityVisitor.child)
-  + (senior * quantityVisitor.senior);
+  const { adult: visitAdult, child: visitChild, senior: visitSenior } = countEntrants(entrants);
+  const priceAccumulated = (adult * visitAdult)
+  + (child * visitChild)
+  + (senior * visitSenior);
   return priceAccumulated;
 }
 

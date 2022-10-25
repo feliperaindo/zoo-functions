@@ -1,6 +1,4 @@
-const data = require('../data/zoo_data');
-
-const { species } = data;
+const { species } = require('../data/zoo_data');
 
 const undefinedParam = () => species.reduce((animalsObj, eachObj) => {
   const { name, residents } = eachObj;
