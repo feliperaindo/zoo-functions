@@ -1,6 +1,5 @@
-const data = require('../data/zoo_data');
+const { species } = require('../data/zoo_data');
 
-const getSpeciesByIds = (...ids) => data.species.filter((animalObj) =>
-  ids.includes(animalObj.id));
+const getSpeciesByIds = (...ids) => species.filter(({ id }) => ids.includes(id));
 
 module.exports = getSpeciesByIds;

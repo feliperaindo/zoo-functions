@@ -2,14 +2,10 @@ const { hours, species } = require('../data/zoo_data');
 
 const weekDays = Object.keys(hours);
 
-const checkAnimal = (parameter) => species.find((animal) => animal.name === parameter);
+const checkAnimal = (parameter) => species.find(({ name }) => name === parameter);
 
-const arrayConstructorAnimals = (weekDay) => species.reduce((animaisArray, eachAnimal) => {
-  if (eachAnimal.availability.includes(weekDay)) {
-    animaisArray.push(eachAnimal.name);
-  }
-  return animaisArray;
-}, []);
+const arrayConstructorAnimals = (weekDay) => species.reduce((animals, { availability, name }) =>
+  ((availability.includes(weekDay)) ? [...animals, name] : animals), []);
 
 function tableSchedule(filterDays) {
   const table = {};
@@ -27,10 +23,8 @@ function tableSchedule(filterDays) {
   return table;
 }
 
-function filterDayOrAnimal(string, animalResult, dayResult) {
-  const test = dayResult ? tableSchedule([string]) : animalResult.availability;
-  return test;
-}
+const filterDayOrAnimal = (string, animalResult, dayResult) =>
+  (dayResult ? tableSchedule([string]) : animalResult.availability);
 
 function getSchedule(scheduleTarget) {
   if (!scheduleTarget) {
@@ -40,10 +34,9 @@ function getSchedule(scheduleTarget) {
   const animal = checkAnimal(scheduleTarget);
   const day = weekDays.includes(scheduleTarget);
 
-  if (!animal && !day) {
-    return tableSchedule(weekDays);
-  }
-  return filterDayOrAnimal(scheduleTarget, animal, day);
+  return (!animal && !day)
+    ? tableSchedule(weekDays)
+    : filterDayOrAnimal(scheduleTarget, animal, day);
 }
 
 module.exports = getSchedule;

@@ -5,12 +5,8 @@ const validateIdAndName = (idNumber, name) =>
    || lastName === name
    || id === idNumber);
 
-const animalsInfo = (animals, info) => species.reduce((filteredInfo, animal) => {
-  if (animals.includes(animal.id)) {
-    filteredInfo.push(animal[info]);
-  }
-  return filteredInfo;
-}, []);
+const animalsInfo = (animals, info) => species.reduce((filteredInfo, animal) =>
+  ((animals.includes(animal.id)) ? [...filteredInfo, animal[info]] : filteredInfo), []);
 
 const employerInfo = ({ id, firstName, lastName, responsibleFor }) => ({
   id,

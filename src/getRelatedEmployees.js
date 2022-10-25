@@ -1,14 +1,13 @@
-const data = require('../data/zoo_data');
+const { employees } = require('../data/zoo_data');
 
-const isManager = (id) => data.employees.some((person) =>
-  person.managers.some((idNumber) => idNumber === id));
+const isManager = (id) => employees.some(({ managers }) =>
+  managers.some((idNumber) => idNumber === id));
 
-const createArray = (managerId) => data.employees.reduce((arrayMenagedPeople, person) => {
-  if (person.managers.includes(managerId)) {
-    arrayMenagedPeople.push(`${person.firstName} ${person.lastName}`);
-  }
-  return arrayMenagedPeople;
-}, []);
+const createArray = (managerId) =>
+  employees.reduce((menagedPeople, { managers, firstName, lastName }) =>
+    ((managers.includes(managerId))
+      ? [...menagedPeople, `${firstName} ${lastName}`]
+      : menagedPeople), []);
 
 function getRelatedEmployees(managerId) {
   if (isManager(managerId)) {

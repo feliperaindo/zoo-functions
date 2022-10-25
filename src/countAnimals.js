@@ -1,18 +1,15 @@
 const { species } = require('../data/zoo_data');
 
-const undefinedParam = () => species.reduce((animalsObj, eachObj) => {
-  const { name, residents } = eachObj;
-  return {
-    ...animalsObj,
-    [name]: residents.length,
-  };
-}, {});
+const undefinedParam = () => species.reduce((animalsObj, { name, residents }) => ({
+  ...animalsObj,
+  [name]: residents.length,
+}), {});
 
 const undefinedSex = (specie) =>
-  species.find((animalObj) => animalObj.name === specie).residents;
+  species.find(({ name }) => name === specie).residents;
 
 const specieAndSexDefined = (specie, sex) => undefinedSex(specie)
-  .filter((condition) => condition.sex === sex).length;
+  .filter(({ sex: animalSex }) => animalSex === sex).length;
 
 function countAnimals(animal) {
   if (!animal) {

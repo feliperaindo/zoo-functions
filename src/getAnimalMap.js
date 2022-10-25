@@ -12,19 +12,14 @@ const arrayCreator = (filter, booleanSorted = false, sex = null) => {
     maleFemaleFiltered = filterTool(filter, sex, 'sex');
   }
 
-  const arrayAnimalNames = maleFemaleFiltered.reduce((array, animal) =>
-    [...array, animal.name], []);
+  const arrayAnimalNames = maleFemaleFiltered.reduce((array, { name }) =>
+    [...array, name], []);
 
-  if (booleanSorted) {
-    return sortObject(arrayAnimalNames);
-  }
-  return arrayAnimalNames;
+  return (booleanSorted) ? sortObject(arrayAnimalNames) : arrayAnimalNames;
 };
 
 const insertAnimalsInArray = (object, array, booleanSorted, sex) => {
-  array.reduce((returnedNewObj, eachAnimalObject) => {
-    const { residents, location, name } = eachAnimalObject;
-
+  array.reduce((returnedNewObj, { residents, location, name }) => {
     const newObj = { [name]: arrayCreator(residents, booleanSorted, sex) };
 
     returnedNewObj[location].push(newObj);
@@ -41,12 +36,8 @@ const returnConstructor = (booleanIncludeNames = false, booleanSorted, sex) => {
 
     if (booleanIncludeNames) {
       insertAnimalsInArray(dataNames, animalsInLocation, booleanSorted, sex);
-      return dataNames;
-    }
-
-    dataNames[location] = arrayCreator(animalsInLocation);
+    } else { dataNames[location] = arrayCreator(animalsInLocation); }
   });
-
   return dataNames;
 };
 
@@ -55,7 +46,6 @@ function getAnimalMap(options) {
     return returnConstructor();
   }
   const { includeNames, sorted, sex } = options;
-
   return returnConstructor(includeNames, sorted, sex);
 }
 
