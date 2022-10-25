@@ -24,8 +24,8 @@ function calculateEntry(entrants) {
   }
   const { adult: visitAdult, child: visitChild, senior: visitSenior } = countEntrants(entrants);
   const priceAccumulated = (adult * visitAdult)
-  + (child * visitChild)
-  + (senior * visitSenior);
+    + (child * visitChild)
+    + (senior * visitSenior);
   return priceAccumulated;
 }
 
