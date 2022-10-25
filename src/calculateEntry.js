@@ -2,12 +2,12 @@ const { prices: { adult, senior, child } } = require('../data/zoo_data');
 
 function countEntrants(entrants) {
   const visitors = { adult: 0, child: 0, senior: 0 };
-  entrants.forEach((visitor) => {
+  entrants.forEach(({ age }) => {
     switch (true) {
-    case visitor.age < 18:
+    case age < 18:
       visitors.child += 1;
       break;
-    case visitor.age >= 50:
+    case age >= 50:
       visitors.senior += 1;
       break;
     default:
